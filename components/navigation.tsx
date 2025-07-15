@@ -8,7 +8,6 @@ export function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ["home", "about", "work", "contact"];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
       let currentSection = "home";
 
@@ -46,6 +45,8 @@ export function Navigation() {
     }
   };
 
+  const isActive = (sectionId: string) => activeSection === sectionId;
+
   return (
     <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-40">
       <div className="flex items-center gap-1 sm:gap-2 bg-background/80 backdrop-blur-lg border rounded-full px-2 sm:px-4 py-2 shadow-lg">
@@ -59,7 +60,7 @@ export function Navigation() {
             key={id}
             onClick={() => scrollToSection(id)}
             className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
-              activeSection === id
+              isActive(id)
                 ? "bg-primary text-primary-foreground shadow-md"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
             }`}
